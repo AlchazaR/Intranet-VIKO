@@ -1,0 +1,240 @@
+<!--admin index-->
+<script type="text/javascript" src="../js/sub_menu.js"></script>
+<script type="text/javascript" src="../js/admin_settings.js"></script>
+<script type="text/javascript" src="../js/jquery.js"></script>
+
+<div class="contents-header">
+    <h1><img alt="sub-menu" src="../../public/images/sub-menu-btn.png" id="sub_menu_btn"
+             onmouseover="document.sub_menu_btn.src='../../public/images/sub-menu-btn-hover.png'"
+             onmouseout="document.sub_menu_btn.src='../../public/images/sub-menu-btn.png'"
+             onmousedown="sub_menu(); document.sub_menu_btn.src='../../public/images/sub-menu-btn-pressed.png'" >
+        <?=$this->escape($this->logo);?></h1>
+</div>
+
+<?php
+$config = new Zend_Config_Ini('../application/config.ini', 'host');
+$path = $config->webhost;
+?>
+
+<div class="sub_menu" id="sub_menu" style="display:none;">
+    <a href="/<?echo $path;?>/admin/log">Įvikiai</a>
+    <a href="/<?echo $path;?>/admin/">Vartotojai</a>
+    <a href="/<?echo $path;?>/admin/settings">Nustatymai</a>
+</div>
+
+<div class="contents_main">
+    <table cellspacing="1" cellpadding="3" class="open" onmouseover="mouseover('place_event_head');" onmouseout="mouse_out('place_event_head');" id="place_event_head">
+        <tr onclick="show('place_event');" >
+            <th><img alt="sub-menu" src="../../public/images/sub_small.png">&nbsp;<a href="#"><?=$this->escape($this->label_places);?> </a></th>
+        </tr>
+    </table>
+    <div id="place_event" class="place_event" style="display:none;">
+        <table cellspacing="1" cellpadding="3" >
+            <tr>
+                <td colspan="6" class="text"> <?=$this->escape($this->label_place_find);?> </td>
+            </tr>
+            <tr>
+                <td class="text"> <?=$this->escape($this->label_net_find);?></td>
+                <td>
+                    <?$net_list = $this->select_net_find;?>
+                    <select size="1" name="src_net" class="inputs" id="src_net">
+                    <option value="all">Visi</option>
+                    <?foreach ($net_list as $net)
+                    { ?>
+                        <option value="<?=$net['tink_id']?>"> <?=$net['tink_pavadinimas']?> </option>
+                    <? } ?>
+                    </select>
+                </td>
+                <td class="text"> <?=$this->escape($this->label_city_find);?> </td>
+                <td>
+                    <?$city_list = $this->select_city_find;?>
+                    <select size="1" name="src_city" class="inputs" id="src_city">
+                    <option value="all">Visi</option>
+                    <?foreach ($city_list as $city)
+                    { ?>
+                        <option value="<?=$city['m_id']?>"> <?=$city['m_pavadinimas']?> </option>
+                    <? } ?>
+                    </select>
+                </td>
+                
+            </tr>
+            <tr>
+                
+                <td class="text"> <?=$this->escape($this->label_name_find);?> </td>
+                <td> <input type="text" name="src_place_name" class="inputs" maxlength="30" id="src_place_name"></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="4"><input type="submit" name="find_place" value="<?=$this->escape($this->submit_place_find);?>"
+                       class="btn" onmouseover="this.className='btn btnhov'" onmouseout="this.className='btn'"
+                       onclick="find_place();"> </td>
+            </tr>
+        </table>
+        <br />
+        <!-- naujas skyrius-->
+        <table cellspacing="1" cellpadding="3" >
+            <tr>
+                <td colspan="6" class="text"> <?=$this->escape($this->label_place_new);?> </td>
+            </tr>
+            <tr>
+                <td class="text"> <?=$this->escape($this->label_net_find);?></td>
+                <td>
+                    <?$net_list = $this->select_net_find;?>
+                    <select size="1" name="new_net" class="inputs" id="new_net">
+                    <option value="all">Visi</option>
+                    <?foreach ($net_list as $net)
+                    { ?>
+                        <option value="<?=$net['tink_id']?>"> <?=$net['tink_pavadinimas']?> </option>
+                    <? } ?>
+                    </select>
+                </td>
+                <td class="text"> <?=$this->escape($this->label_city_find);?> </td>
+                <td>
+                    <?$city_list = $this->select_city_find;?>
+                    <select size="1" name="new_city" class="inputs" id="new_city">
+                    <?foreach ($city_list as $city)
+                    { ?>
+                        <option value="<?=$city['m_id']?>"> <?=$city['m_pavadinimas']?> </option>
+                    <? } ?>
+                    </select>
+                </td>
+
+            </tr>
+            <tr>
+                <td class="text"> <?=$this->escape($this->label_name_find);?> </td>
+                <td> <input type="text" name="new_place_name" class="inputs" maxlength="10" id="new_place_name"></td>
+                <td class="text"> <?=$this->escape($this->label_addr_new);?> </td>
+                <td> <input type="text" name="new_place_adr" class="inputs" maxlength="50" id="new_place_adr"></td>
+            </tr>
+            <tr>
+                <td class="text"> <?=$this->escape($this->label_tel_new);?> </td>
+                <td> <input type="text" name="new_place_tel" class="inputs" maxlength="12" id="new_place_tel"></td>
+                <td class="text"> <?=$this->escape($this->label_mail_new);?> </td>
+                <td> <input type="text" name="new_place_mail" class="inputs" maxlength="50" id="new_place_mail"></td>
+            </tr>
+            <tr>
+                <td colspan="4"><input type="submit" name="new_place" value="<?=$this->escape($this->submit_place_new);?>"
+                       class="btn" onmouseover="this.className='btn btnhov'" onmouseout="this.className='btn'"
+                       onclick="new_place();"> </td>
+            </tr>
+        </table>
+        <div id="settings_list"></div>
+    </div> <!-- place_event-->
+
+    <br />
+    <table cellspacing="1" cellpadding="3" class="open" onmouseover="mouseover('net_event_head');" onmouseout="mouse_out('net_event_head');" id="net_event_head">
+        <tr onclick="show('net_event');" >
+            <th><img alt="sub-menu" src="../../public/images/sub_small.png">&nbsp;<a href="#"><?=$this->escape($this->label_net);?> </a></th>
+        </tr>
+    </table>
+    <div id="net_event" class="net_event" style="display:none;">
+        <table cellspacing="1" cellpadding="3" >
+            <tr>
+                <td colspan="3" class="text"> <?=$this->escape($this->label_net_new);?> </td>
+            </tr>
+            <tr>
+                <td class="text"> <?=$this->escape($this->label_net_new_name);?> </td>
+                <td> <input type="text" name="new_net_name" class="inputs_long" maxlength="40" id="new_net_name"> </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="3"><input type="submit" name="new_net" value="<?=$this->escape($this->submit_net_new);?>"
+                       class="btn" onmouseover="this.className='btn btnhov'" onmouseout="this.className='btn'"
+                       onclick="new_net();"> </td>
+            </tr>
+        </table>
+        <br />
+        <table cellspacing="1" cellpadding="3" >
+            <tr>
+                <td colspan="4" class="text"> <?=$this->escape($this->label_net);?> </td>
+            </tr>
+        </table>
+        <?$net_list = $this->select_net_find;?>
+        <?foreach ($net_list as $net)
+        { ?>
+            <table cellspacing="1" cellpadding="3" class="lists" id="net_<?=$net['tink_id']?>">
+            <tr>
+                <td class="text" width="70"> <?=$this->escape($this->label_net_id);?></td>
+                <td width="50"> <?=$net['tink_id']?> </td>
+                <td class="text" width="150"> <?=$this->escape($this->label_net_new_name);?></td>
+                <td id="net_edit<?=$net['tink_id']?>"> <?=$net['tink_pavadinimas']?> </td>
+                <td width=10 id="net_edit_btn<?=$net['tink_id']?>"> <img src="../images/edit.png" alt="keisti" onmousedown="net_edit(<?=$net['tink_id']?>);"/></td>
+                <td width=10 id="net_delete_btn<?=$net['tink_id']?>"> <img src="../images/del.png" alt="pašalinti" onmousedown="net_delete_conf(<?=$net['tink_id']?>);"/></td>
+            </tr>
+            </table>
+        <? } ?>
+        
+    </div> <!-- net event -->
+
+    <br />
+    <table cellspacing="1" cellpadding="3" class="open" onmouseover="mouseover('pos_event_head');" onmouseout="mouse_out('pos_event_head');" id="pos_event_head">
+        <tr onclick="show('pos_event');" >
+            <th><img alt="sub-menu" src="../../public/images/sub_small.png">&nbsp;<a href="#"><?=$this->escape($this->label_pos);?> </a></th>
+        </tr>
+    </table>
+    <div id="pos_event" class="pos_event" style="display:none;">
+        <table cellspacing="1" cellpadding="3" >
+            <tr>
+                <td colspan="3" class="text"> <?=$this->escape($this->label_pos_new);?> </td>
+            </tr>
+            <tr>
+                <td class="text"> <?=$this->escape($this->label_pos_new_name);?> </td>
+                <td> <input type="text" name="new_pos_name" class="inputs_long" maxlength="40" id="new_pos_name"> </td>
+                <td> </td>
+            </tr>
+            <tr>
+                <td colspan="3"><input type="submit" name="new_pos" value="<?=$this->escape($this->submit_pos_new);?>"
+                       class="btn" onmouseover="this.className='btn btnhov'" onmouseout="this.className='btn'"
+                       onclick="new_pos();"> </td>
+            </tr>
+        </table>
+        <br />
+        <table cellspacing="1" cellpadding="3" >
+            <tr>
+                <td colspan="4" class="text"> <?=$this->escape($this->label_pos);?> </td>
+            </tr>
+        </table>
+        <?$pos_list = $this->select_pos_find;?>
+        <?foreach ($pos_list as $pos)
+        { ?>
+            <table cellspacing="1" cellpadding="3" class="lists" id="pos_<?=$pos['par_id']?>">
+            <tr>
+                <td class="text" width="70"> <?=$this->escape($this->label_pos_id);?></td>
+                <td width="50"> <?=$pos['par_id']?> </td>
+                <td class="text" width="150"> <?=$this->escape($this->label_pos_new_name);?></td>
+                <td id ="pos_edit<?=$pos['par_id']?>"> <?=$pos['par_pavadinimas']?> </td>
+                <td width=10 id="pos_edit_btn<?=$pos['par_id']?>"> <img src="../images/edit.png" alt="keisti" onmousedown="pos_edit(<?=$pos['par_id']?>);"/></td>
+                <td width=10 id="pos_delete_btn<?=$pos['par_id']?>"> <img src="../images/del.png" alt="pašalinti" onmousedown="pos_delete_conf(<?=$pos['par_id']?>);"/></td>
+            </tr>
+            </table>
+        <? } ?>
+
+    </div> <!-- positions -->
+
+    <br />
+    <table cellspacing="1" cellpadding="3" class="open" onmouseover="mouseover('other_event_head');" onmouseout="mouse_out('other_event_head');" id="other_event_head">
+        <tr onclick="show('other_event');" >
+            <th><img alt="sub-menu" src="../../public/images/sub_small.png">&nbsp;<a href="#"><?=$this->escape($this->label_other);?> </a></th>
+        </tr>
+    </table>
+    <div id="other_event" class="other_event" style="display:none;">
+        <table cellspacing="1" cellpadding="3" >
+            <tr>
+                <td class="text"> <?=$this->escape($this->label_other_mail);?> </td>
+                <td> <input type="text" name="edit_other_mail" class="inputs" maxlength="40" id="edit_other_mail"> </td>
+            </tr>
+
+            <tr>
+                <td colspan="2"><input type="submit" name="save_others" value="<?=$this->escape($this->submit_others);?>"
+                       class="btn" onmouseover="this.className='btn btnhov'" onmouseout="this.className='btn'"
+                       onclick="save_others();"> </td>
+            </tr>
+            
+        </table>
+    </div>
+   <!-- <div id="settings_list"></div>-->
+    <div id="confirm"></div>
+    <div id="window"></div>
+
+</div>

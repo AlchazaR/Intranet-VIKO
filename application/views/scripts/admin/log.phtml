@@ -1,0 +1,155 @@
+<!--admin log-->
+<script type="text/javascript" src="../js/sub_menu.js"></script>
+<script type="text/javascript" src="../js/admin_log.js"></script>
+<script type="text/javascript" src="../js/jquery.js"></script>
+
+<div class="contents-header">
+    <h1><img alt="sub-menu" src="../../public/images/sub-menu-btn.png" id="sub_menu_btn"
+             onmouseover="document.sub_menu_btn.src='../../public/images/sub-menu-btn-hover.png'"
+             onmouseout="document.sub_menu_btn.src='../../public/images/sub-menu-btn.png'"
+             onmousedown="sub_menu(); document.sub_menu_btn.src='../../public/images/sub-menu-btn-pressed.png'" >
+        <?=$this->escape($this->logo);?></h1>
+</div>
+
+<?php
+$config = new Zend_Config_Ini('../application/config.ini', 'host');
+$path = $config->webhost;
+?>
+<div class="sub_menu" id="sub_menu" style="display:none;">
+    <a href="/<?echo $path;?>/admin/log">Įvikiai</a>
+    <a href="/<?echo $path;?>/admin/">Vartotojai</a>
+    <a href="/<?echo $path;?>/admin/settings">Nustatymai</a>
+</div>
+
+<div class="contents_main" >
+    <!-- Ivykio pajeska-->
+    <table cellspacing="1" cellpadding="3" class="open" onmouseover="mouseover('search_event_head');" onmouseout="mouse_out('search_event_head');" id="search_event_head">
+        <tr onclick="show('search_event');" >
+            <th><img alt="sub-menu" src="../../public/images/sub_small.png">&nbsp;<a href="#"><?=$this->escape($this->label_search);?> </a></th>
+        </tr>
+    </table>
+    <div id="search_event" class="search_event" style="display:none;">
+    <table cellspacing="1" cellpadding="3" >
+        <tr>
+            <td>
+                <?=$this->escape($this->label_src_name);?>
+            </td>
+            <td>
+                <input type="text" name="src_name" class="inputs" maxlength="30" id="src_name">
+            </td>
+            <td>
+                <?=$this->escape($this->label_src_group);?>
+            </td>
+            <td>
+                 <?$group_list = $this->select_src_group;?>
+
+                <select size="1" name="src_group" class="inputs" id="src_group">
+                    <option value="all">Visos</option>
+                <?foreach ($group_list as $group)
+                { ?>
+                    <option value="<?=$group['pGrupes_id']?>"> <?=$group['pGrupes_pavadinimas']?> </option>
+             <? } ?>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <?=$this->escape($this->label_src_surname);?>
+            </td>
+            <td>
+                <input type="text" name="src_surname" class="inputs" maxlength="30" id="src_surname">
+            </td>
+            <td>
+                <?=$this->escape($this->label_src_place);?>
+            </td>
+            <td>
+                 <?$place_list = $this->select_src_place;?>
+
+                <select size="1" name="src_place" class="inputs" id="src_place">
+                    <option value="all">Visi</option>
+                <?foreach ($place_list as $place)
+                { ?>
+                    <option value="<?=$place['sk_id']?>"> <?=$place['sk_pavad']?> </option>
+             <? } ?>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <?=$this->escape($this->label_src_date1);?>
+            </td>
+            <td>
+                <input type="text" name="src_date1" class="inputs" maxlength="10" id="src_date1">
+            </td>
+                
+            <td>
+                <?=$this->escape($this->label_src_date2);?>
+            </td>
+            <td>
+                <input type="text" name="src_date2" class="inputs" maxlength="10" id="src_date2">
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <?=$this->escape($this->label_src_event);?>
+            </td>
+            <td colspan="3">
+                <?$event_list = $this->select_src_event;?>
+
+                <select size="1" name="src_event" class="inputs_long" id="src_event">
+                    <option value="all">Visi</option>
+                <?foreach ($event_list as $event)
+                { ?>
+                    <option value="<?=$event['logt_id']?>"> <?=$event['logt_aprasymas']?> </option>
+             <? } ?>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <th colspan="4">
+                <input type="submit" name="find_user" value="<?=$this->escape($this->submit_find);?>"
+                       class="btn" onmouseover="this.className='btn btnhov'" onmouseout="this.className='btn'"
+                       onclick="find_events();">
+
+
+ </th>
+        </tr>
+    </table>
+    </div>
+    <br />
+    <!-- naujas ivykio tipas -->
+    <table cellspacing="1" cellpadding="3" class="open" onmouseover="mouseover('new_event_head');" onmouseout="mouse_out('new_event_head');" id="new_event_head">
+        <tr onclick="show('new_event');" >
+            <th><img alt="sub-menu" src="../../public/images/sub_small.png">&nbsp;<a href="#"><?=$this->escape($this->label_new);?> </a></th>
+        </tr>
+    </table>
+    <div id="new_event" style="display:none;">
+        <table cellspacing="1" cellpadding="3" >
+            <tr>
+                <td>
+                    <?=$this->escape($this->label_new_event);?>
+                </td>
+                <td>
+                    <input type="text" name="new_event" class="inputs_long" maxlength="100" id="text_new_event">
+                </td>
+
+            </tr>
+            <tr>
+                <th colspan="2">
+                <input type="submit" name="add_event" value="<?=$this->escape($this->submit_enter);?>"
+                       class="btn" onmouseover="this.className='btn btnhov'" onmouseout="this.className='btn'"
+                       onclick="new_event();">
+                </th>
+            </tr>
+        </table>
+    </div>
+    
+        <div id="events_list"></div>
+        <div id="confirm"></div>
+        <div id="window"></div>
+
+</div>

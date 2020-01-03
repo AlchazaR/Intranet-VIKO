@@ -1,0 +1,195 @@
+/* 
+    Document   : general
+    Created on : 2010-04-23, 10.56.05
+    Author     : v.zmitrovic
+    
+*/
+root {
+    display: block;
+}
+
+body
+{
+    background: #accea5 url(../images/background-top.png) top no-repeat;
+}
+
+.inputs
+{
+    width: 150px;
+    font-family: Georgia,'Times New Roman',times,serif;
+    color: #333333;
+    font-size: 12px;
+    border: 1px solid #666666;
+}
+
+.inputs_mid
+{
+    width: 300px;
+    font-family: Georgia,'Times New Roman',times,serif;
+    color: #333333;
+    font-size: 12px;
+    border: 1px solid #666666;
+}
+
+.inputs_long
+{
+    width: 450px;
+    font-family: Georgia,'Times New Roman',times,serif;
+    color: #333333;
+    font-size: 12px;
+    border: 1px solid #666666;
+}
+
+input.btn
+{
+    color: #333333;
+    font-weight: bold;
+    font-family: Georgia,'Times New Roman',times,serif;
+    background-color:#d3d4d3;
+    border: 1px solid;
+    width: 200px;
+    border-top-color: #999999;
+    border-left-color: #999999;
+    border-bottom-color: #717171;
+    border-right-color: #717171;
+}
+
+input.btnhov
+{
+    background-color:#c2c3c2;
+   /* border: 1px solid;
+    width: 200px;
+    border-top-color: #999999;
+    border-left-color: #999999;
+    border-bottom-color: #717171;
+    border-right-color: #717171;*/
+}
+
+input.upload
+{
+  
+    font-family: Georgia,'Times New Roman',times,serif;
+    color: #333333;
+    font-size: 12px;
+    border: 1px #666666;
+}
+
+table.lists
+{
+    border:1px solid #cccccc;
+    margin-top: 10px;
+    margin-left: 10px;
+    text-align: left;
+    width: 580px;
+}
+
+table.list_head
+{
+    border:1px solid #cccccc;
+    margin-top: 10px;
+    text-align: left;
+    background-color: #f9f7f7;
+}
+
+table.open
+{
+    border:1px solid #cccccc;
+    background: #fefffe url(../images/table-open.png) bottom repeat-x;
+}
+
+table.head
+{
+    border: 1px solid #eee;
+    background: #fefffe url(../images/table-open.png) bottom repeat-x;
+}
+
+.text
+{
+    color: #333333;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.error
+{
+    color: #990011;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.done
+{
+    color: #336622;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+#confirm
+{
+    
+    /*border:1px solid #cccccc;*/
+    position:fixed;
+    left: 0px;
+    top: 0px;
+   /* width: 300px;
+    height: 100px;*/
+    z-index:9000;
+    background-color: #accea5;
+    display:none;
+    /*width: 100%; /* stupid IE */
+    /*zoom: 1;*/
+    filter:alpha(opacity=50);
+	-moz-opacity:0.5;
+	-khtml-opacity: 0.5;
+	opacity: 0.5;
+}
+
+#window
+{
+    position:fixed;
+    width:440px;
+    height:100px;
+    display:none;
+    z-index:9999;
+    padding:40px;
+    background-color:#fff;
+    border:1px solid #cccccc;
+    text-align: center;
+    color: #bf0429;
+    font-family: Georgia,'Times New Roman',times,serif;
+    font-weight: bold;
+    font-size: 12px;
+}
+#window img
+{
+    display:        block;
+}
+
+#window table
+{
+    width: 150px;
+    height: 20px;
+    
+}
+
+
+/*
+    Browse button
+*/
+input.browse
+{
+    font-family: Georgia,'Times New Roman',times,serif;
+    font-size: 12px;
+}
+
+/*
+    END Browse button
+*/
+
+.scroll_list
+{
+    width: 614px;
+    height: 250px;
+    border: 1px solid #eee;
+    overflow-y: scroll;
+}

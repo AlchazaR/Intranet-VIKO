@@ -1,0 +1,100 @@
+<!--mygroups index-->
+
+<script type="text/javascript" src="http:/<?=$this->escape($this->path);?>/js/mygroups.js"></script>
+
+<div class="contents-header">
+    <h1><img alt="sub-menu" src="http:/<?=$this->escape($this->path);?>/images/sub-menu-btn.png" id="sub_menu_btn"
+             onmouseover="document.sub_menu_btn.src='http:/<?=$this->escape($this->path);?>/images/sub-menu-btn-hover.png'"
+             onmouseout="document.sub_menu_btn.src='http:/<?=$this->escape($this->path);?>/images/sub-menu-btn.png'"
+             onmousedown="show('sub_menu_mygroups'); document.sub_menu_btn.src='http:/<?=$this->escape($this->path);?>/images/sub-menu-btn-pressed.png'" >
+        <?=$this->escape($this->logo);?></h1>
+</div>
+
+<div class="sub_menu" id="sub_menu_mygroups" style="display:none;">
+    <a href="http:/<?=$this->escape($this->path);?>/mygroups"><?=$this->escape($this->label_my_groups);?></a>
+    <a href="http:/<?=$this->escape($this->path);?>/mygroups/newgroup"><?=$this->escape($this->label_newgroup);?></a>
+</div>
+
+<div class="contents_main">
+    <table cellspacing="1" cellpadding="3" class="head">
+        <tr class="text">
+            <th><?=$this->escape($this->label_my_groups);?></th>
+        </tr>
+    </table>
+    <br />
+    <?$group_list = $this->group_list;?>
+    <?foreach ($group_list as $group)
+    { ?>
+        <table cellspacing="1" cellpadding="3" class="list_head" id="groups_tbl_<?=$group['mgr_id']?>" onmouseover="tbl_over('groups_tbl_<?=$group['mgr_id']?>');" onmouseout="tbl_out('groups_tbl_<?=$group['mgr_id']?>');">
+            <tr>
+                <td width="12" onmousedown="mgr_show_users_list(<?=$group['mgr_id']?>);"><img alt="nariu sarasas" src="http:/<?=$this->escape($this->path);?>/images/sub_small.png"></td>
+                <td width="100" class="text" onmousedown="mgr_show_users_list(<?=$group['mgr_id']?>);"><?=$group['mgr_pavadinimas']?></td>
+                <td width="451" onmousedown="mgr_show_users_list(<?=$group['mgr_id']?>);"><?=$group['mgr_aprasymas']?></td>
+                <td width="21"><img alt="+" src="http:/<?=$this->escape($this->path);?>/images/add_user_16x16.png" onmousedown="show('mgr_add_user_<?=$group['mgr_id']?>');"></td>
+                <td width="17"><img alt="X" src="http:/<?=$this->escape($this->path);?>/images/del.png" onmousedown="mgr_delete_group_conf(<?=$group['mgr_id']?>, '<?=$group['mgr_pavadinimas']?>');"></td>
+            </tr>
+        </table>
+        <div id="mgr_add_user_<?=$group['mgr_id']?>" style="display:none;">
+            <div class="scroll_list">
+                <table cellspacing="1" cellpadding="3">
+                    <tr>
+                        <td class="text" colspan="4"><?=$this->escape($this->label_newgroup_fnd_user);?></td>
+                    </tr>
+                    <tr>
+                        <td class="text">
+                            <?=$this->escape($this->label_newgroup_fnd_name);?>
+                        </td>
+                        <td>
+                            <input type="text" name="newgroup_fnd_name" class="inputs" maxlength="50" id="newgroup_fnd_name_<?=$group['mgr_id']?>" onKeyUp="ngr_find_user(<?=$group['mgr_id']?>);">
+                        </td>
+                        <td class="text">
+                            <?=$this->escape($this->label_newgroup_fnd_surname);?>
+                        </td>
+                        <td>
+                            <input type="text" name="newgroup_fnd_surname" class="inputs" maxlength="50" id="newgroup_fnd_surname_<?=$group['mgr_id']?>" onKeyUp="ngr_find_user(<?=$group['mgr_id']?>);">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text">
+                        <?=$this->escape($this->label_newgroup_fnd_pos);?>
+                        </td>
+                        <td>
+                            <?$pos_list = $this->select_user_pos;?>
+                            <select size="1" name="newgroup_user_pos" class="inputs" id="newgroup_user_pos_<?=$group['mgr_id']?>" onChange="ngr_find_user(<?=$group['mgr_id']?>);">
+                                <option value ="all">Visos</option>
+                                <?foreach ($pos_list as $pos)
+                                { ?>
+                                    <option value="<?=$pos['par_id']?>"> <?=$pos['par_pavadinimas']?>  </option>
+                                <? } ?>
+                            </select>
+                        </td>
+                        <td class="text">
+                            <?=$this->escape($this->label_newgroup_fnd_place);?>
+                        </td>
+                        <td>
+                            <?$place_list = $this->select_user_place;?>
+                            <select size="1" name="newgroup_user_place" class="inputs" id="newgroup_user_place_<?=$group['mgr_id']?>" onChange="ngr_find_user(<?=$group['mgr_id']?>);">
+                                <option value ="all">Visi</option>
+                                <?foreach ($place_list as $place)
+                                { ?>
+                                    <option value="<?=$place['sk_id']?>"> <?=$place['sk_pavad']?>  </option>
+                                <? } ?>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" id ="ngr_errors_<?=$group['mgr_id']?>"></td>
+                    </tr>
+                </table>
+                <div id="found_users_<?=$group['mgr_id']?>">
+
+                </div> <!-- found users-->
+            </div> <!-- scroll list-->
+        </div> <!-- found users-->
+        <div id="mgr_users_list_<?=$group['mgr_id']?>" style="display:none;">
+            
+        </div>
+    <?}?>
+    <div id="confirm"></div>
+    <div id="window"></div>
+</div>

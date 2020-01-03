@@ -1,0 +1,173 @@
+<!--foto galerija >> naujas albumas-->
+
+<script type="text/javascript" src="http:/<?=$this->escape($this->path);?>/js/foto.js"></script>
+<script type="text/javascript" src="http:/<?=$this->escape($this->path);?>/js/ajaxupload.js"></script>
+<!--foto galerija - naujas albumas-->
+<div class="contents-header">
+    <h1><img alt="sub-menu" src="http:/<?=$this->escape($this->path);?>/images/sub-menu-btn.png" id="sub_menu_btn"
+             onmouseover="document.sub_menu_btn.src='http:/<?=$this->escape($this->path);?>/images/sub-menu-btn-hover.png'"
+             onmouseout="document.sub_menu_btn.src='http:/<?=$this->escape($this->path);?>/images/sub-menu-btn.png'"
+             onmousedown="show('sub_menu_foto_albums'); document.sub_menu_btn.src='http:/<?=$this->escape($this->path);?>/images/sub-menu-btn-pressed.png'" >
+        <?=$this->escape($this->logo);?></h1>
+</div>
+
+<div class="sub_menu" id="sub_menu_foto_albums" style="display:none;">
+    <a href="http:/<?=$this->escape($this->path);?>/foto"><?=$this->escape($this->label_all_albums);?></a>
+    <a href="http:/<?=$this->escape($this->path);?>/foto/myalbums"><?=$this->escape($this->label_my_albums);?></a>
+    <a href="http:/<?=$this->escape($this->path);?>/foto/newalbum"><?=$this->escape($this->label_new_album);?></a>
+</div>
+
+<div class="contents_main">
+    <table cellspacing="1" cellpadding="3" class="head">
+        <tr class="text">
+            <th><?=$this->escape($this->label_new_album);?></th>
+        </tr>
+    </table>
+    <br />
+    <table cellspacing="1" cellpadding="3">
+        <tr>
+            <td class="text">
+                <?=$this->escape($this->label_album_name);?>
+            </td>
+            <td>
+                <input type="text" name="new_album_name" class="inputs_mid" maxlength="50" id="new_album_name">
+            </td>
+        </tr>
+        <tr>
+            <td class="text">
+                <?=$this->escape($this->label_album_info);?>
+            </td>
+            <td>
+                <textarea class="inputs_mid" rows="2" cols="50" id="new_album_info"></textarea>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <span class="text"><?=$this->escape($this->label_can_view_list);?></span>
+    <br />
+    <br />
+    <table cellspacing="1" cellpadding="3" class="open" onmouseover="mouseover('new_album_groups');" onmouseout="mouse_out('new_album_groups');" id="new_album_groups">
+        <tr onclick="show('album_find_groups');" >
+            <td class="text">
+                <img alt="sub-menu" src="http:/<?=$this->escape($this->path);?>/images/sub_small.png">
+                <?=$this->escape($this->label_add_group);?>
+            </td>
+        </tr>
+    </table>
+    <div id="album_find_groups" style="display:none;" class="scroll_list">
+        <?$mygroups_list = $this->mygroups_list;?>
+        <?foreach ($mygroups_list as $group)
+        { ?>
+            <table cellspasing="2" class="lists">
+                <tr>
+                    <td width="100" slass="text">
+                        <?=$group['mgr_pavadinimas']?>
+                    </td>
+                    <td width="450">
+                        <?=$group['mgr_aprasymas']?>
+                    </td>
+                    <td >
+                        <img src="http:/<?=$this->escape($this->path);?>/images/add-icon.png" alt="plius" onclick="add_group_to_viewers(<?=$group['mgr_id']?>);">
+                    </td>
+                </tr>
+            </table>
+        <?}?>
+    </div>
+    <br />
+    <table cellspacing="1" cellpadding="3" class="open" onmouseover="mouseover('new_album_users');" onmouseout="mouse_out('new_album_users');" id="new_album_users">
+        <tr onclick="show('album_find_users');" >
+            <td class="text">
+                <img alt="sub-menu" src="http:/<?=$this->escape($this->path);?>/images/sub_small.png">
+                <?=$this->escape($this->label_add_users);?>
+            </td>
+        </tr>
+    </table>
+    <div id="album_find_users" style="display:none;" class="scroll_list">
+        <table cellspacing="1" cellpadding="3">
+            <tr>
+                <td class="text" colspan="4"><?=$this->escape($this->label_album_fnd_user);?></td>
+            </tr>
+            <tr>
+                <td class="text">
+                    <?=$this->escape($this->label_album_fnd_name);?>
+                </td>
+                <td>
+                    <input type="text" name="anbum_fnd_name" class="inputs" maxlength="50" id="album_fnd_name" onKeyUp="album_find_user();">
+                </td>
+                <td class="text">
+                    <?=$this->escape($this->label_album_fnd_surname);?>
+                </td>
+                <td>
+                    <input type="text" name="album_fnd_surname" class="inputs" maxlength="50" id="album_fnd_surname" onKeyUp="album_find_user();">
+                </td>
+            </tr>
+            <tr>
+                <td class="text">
+                    <?=$this->escape($this->label_album_fnd_pos);?>
+                </td>
+                <td>
+                    <?$pos_list = $this->select_user_pos;?>
+                    <select size="1" name="album_user_pos" class="inputs" id="album_user_pos" onChange="album_find_user();">
+                        <option value ="all">Visos</option>
+                        <?foreach ($pos_list as $pos)
+                        { ?>
+                            <option value="<?=$pos['par_id']?>"> <?=$pos['par_pavadinimas']?>  </option>
+                        <? } ?>
+                    </select>
+                </td>
+                <td class="text">
+                    <?=$this->escape($this->label_album_fnd_place);?>
+                </td>
+                <td>
+                    <?$place_list = $this->select_user_place;?>
+                <select size="1" name="album_user_place" class="inputs" id="album_user_place" onChange="album_find_user(0);">
+                    <option value ="all">Visi</option>
+                    <?foreach ($place_list as $place)
+                    { ?>
+                        <option value="<?=$place['sk_id']?>"> <?=$place['sk_pavad']?>  </option>
+                    <? } ?>
+                </select>
+                </td>
+            </tr>
+        </table>
+        <div id="found_users">
+
+        </div>
+    </div>
+    <br />
+    <span class="text"><?=$this->escape($this->label_applyed_user_list);?></span>
+    <br />
+    <div id="users_list_can_see_album" class="scroll_list">
+
+    </div>
+    <br />
+    <table cellspacing="1" cellpadding="3" class="open" onmouseover="mouseover('new_album_fotos');" onmouseout="mouse_out('new_album_fotos');" id="new_album_fotos">
+        <tr onclick="show('album_fotos');" >
+            <td class="text">
+                <img alt="sub-menu" src="http:/<?=$this->escape($this->path);?>/images/sub_small.png">
+                <?=$this->escape($this->label_add_fotos);?>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <div id="album_fotos">
+        <table cellspacing="1" cellpadding="3">
+            <tr>
+                <td colspan ="3">
+                    <input type="hidden" name="MAX_FILE_SIZE" value="5000000000">
+                    <input type="file" name="album_foto_upload" accept="image/jpeg, image/png" size="65" id="album_foto_upload" class="browse"/>
+                </td>
+            </tr>
+            <tr>
+                <td><span id="status" ></span></td>
+            </tr>
+        </table>
+    </div>
+    <br />
+    <div id="uploaded_album_fotos" class="scroll_list">
+
+    </div>
+    <br />
+     <input type="submit" name="save_album" value="<?=$this->escape($this->submit_save_album);?>"
+                       class="btn" onmouseover="this.className='btn btnhov'" onmouseout="this.className='btn'">
+</div>

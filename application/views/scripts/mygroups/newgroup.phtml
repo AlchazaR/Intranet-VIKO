@@ -1,0 +1,107 @@
+<!--mygroups new group-->
+
+<script type="text/javascript" src="http:/<?=$this->escape($this->path);?>/js/mygroups.js"></script>
+
+<div class="contents-header">
+    <h1><img alt="sub-menu" src="http:/<?=$this->escape($this->path);?>/images/sub-menu-btn.png" id="sub_menu_btn"
+             onmouseover="document.sub_menu_btn.src='http:/<?=$this->escape($this->path);?>/images/sub-menu-btn-hover.png'"
+             onmouseout="document.sub_menu_btn.src='http:/<?=$this->escape($this->path);?>/images/sub-menu-btn.png'"
+             onmousedown="show('sub_menu_mygroups'); document.sub_menu_btn.src='http:/<?=$this->escape($this->path);?>/images/sub-menu-btn-pressed.png'" >
+        <?=$this->escape($this->logo);?></h1>
+</div>
+
+<div class="sub_menu" id="sub_menu_mygroups" style="display:none;">
+    <a href="http:/<?=$this->escape($this->path);?>/mygroups"><?=$this->escape($this->label_my_groups);?></a>
+    <a href="http:/<?=$this->escape($this->path);?>/mygroups/newgroup"><?=$this->escape($this->label_newgroup);?></a>
+</div>
+
+<div class="contents_main">
+    <table cellspacing="1" cellpadding="3" class="head">
+        <tr class="text">
+            <th><?=$this->escape($this->label_newgroup);?></th>
+        </tr>
+    </table>
+<br />
+    <table cellspacing="1" cellpadding="3">
+        <tr>
+            <td class="text">
+                <?=$this->escape($this->label_newgroup_name);?>
+            </td>
+            <td id="newgroup_name_td">
+                <input type="text" name="newgroup_name" class="inputs_mid" maxlength="50" id="newgroup_name" onblur="ngr_check_group_name();">
+            </td>
+            <td>
+                <input type="hidden" name="newgroup_id" id="newgroup_id" value=""> <!-- kai jau sukurta grupe, cia issaugomas grupes id-->
+            </td>
+        </tr>
+        <tr>
+            <td class="text">
+                <?=$this->escape($this->label_newgroup_info);?>
+            </td>
+            <td id="newgroup_info_td">
+                <input type="text" name="newgroup_info" class="inputs_mid" maxlength="254" id="newgroup_info">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><div id="ngr_errors"></div></td>
+        </tr>
+    </table>
+<br />
+    <div class="scroll_list">
+        <table cellspacing="1" cellpadding="3">
+            <tr>
+                <td class="text" colspan="4"><?=$this->escape($this->label_newgroup_fnd_user);?></td>
+            </tr>
+            <tr>
+                <td class="text">
+                    <?=$this->escape($this->label_newgroup_fnd_name);?>
+                </td>
+                <td>
+                    <input type="text" name="newgroup_fnd_name" class="inputs" maxlength="50" id="newgroup_fnd_name" onKeyUp="ngr_find_user(0);">
+                </td>
+                <td class="text">
+                    <?=$this->escape($this->label_newgroup_fnd_surname);?>
+                </td>
+                <td>
+                    <input type="text" name="newgroup_fnd_surname" class="inputs" maxlength="50" id="newgroup_fnd_surname" onKeyUp="ngr_find_user(0);">
+                </td>
+            </tr>
+            <tr>
+                <td class="text">
+                    <?=$this->escape($this->label_newgroup_fnd_pos);?>
+                </td>
+                <td>
+                    <?$pos_list = $this->select_user_pos;?>
+                    <select size="1" name="newgroup_user_pos" class="inputs" id="newgroup_user_pos" onChange="ngr_find_user(0);">
+                        <option value ="all">Visos</option>
+                        <?foreach ($pos_list as $pos)
+                        { ?>
+                            <option value="<?=$pos['par_id']?>"> <?=$pos['par_pavadinimas']?>  </option>
+                        <? } ?>
+                    </select>
+                </td>
+                <td class="text">
+                    <?=$this->escape($this->label_newgroup_fnd_place);?>
+                </td>
+                <td>
+                    <?$place_list = $this->select_user_place;?>
+                <select size="1" name="newgroup_user_place" class="inputs" id="newgroup_user_place" onChange="ngr_find_user(0);">
+                    <option value ="all">Visi</option>
+                    <?foreach ($place_list as $place)
+                    { ?>
+                        <option value="<?=$place['sk_id']?>"> <?=$place['sk_pavad']?>  </option>
+                    <? } ?>
+                </select>
+                </td>
+            </tr>
+        </table>
+        <div id="found_users">
+            
+        </div>
+    </div>
+    <br />
+    <div id="new_group_name">
+    </div>
+    <div id="added_users">
+    </div>
+</div>

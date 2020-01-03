@@ -1,0 +1,149 @@
+<!--settings index-->
+<script type="text/javascript" src="http:/<?=$this->escape($this->path);?>/js/sub_menu.js"></script>
+<script type="text/javascript" src="http:/<?=$this->escape($this->path);?>/js/jquery.js"></script>
+<script type="text/javascript" src="http:/<?=$this->escape($this->path);?>/js/settings.js"></script>
+
+<div class="contents-header">
+    <h1><?=$this->escape($this->logo);?></h1>
+</div>
+
+<div class="contents_main">
+    <table cellspacing="1" cellpadding="3" class="head">
+        <tr class="text">
+            <th><?=$this->escape($this->label_user_settings);?></th>
+        </tr>
+    </table>
+    <form name="edit_user" enctype="multipart/form-data" action="<?=$this->escape($this->edit_action);?>" method="post">
+    <table cellspacing="1" cellpadding="3">
+        <tr>
+            <td colspan="4" height="90">
+                <img src="<?=$this->escape($this->user_foto);?>" alt="foto" width="65"/>
+            </td>
+            
+        </tr>
+    
+        <tr>
+            <td class="text">
+                <?=$this->escape($this->label_user_name);?>
+            </td>
+            <td>
+                <input type="text" name="user_name" class="inputs" maxlength="30" id="user_name" value="<?=$this->escape($this->val_user_name);?>">
+            </td>
+            <td class="text">
+                <?=$this->escape($this->label_user_surname);?>
+            </td>
+            <td>
+                <input type="text" name="user_surname" class="inputs" maxlength="30" id="user_surname" value="<?=$this->escape($this->val_user_surname);?>">
+            </td>
+        </tr>
+        <tr>
+            <td class="text">
+                <?=$this->escape($this->label_user_tel);?>
+            </td>
+            <td>
+                <input type="text" name="user_tel" class="inputs" maxlength="20" id="user_tel" value="<?=$this->escape($this->val_user_tel);?>">
+            </td>
+            <td class="text">
+                <?=$this->escape($this->label_user_mail);?>
+            </td>
+            <td>
+                <input type="text" name="user_mail" class="inputs" maxlength="70" id="user_mail" value="<?=$this->escape($this->val_user_mail);?>">
+            </td>
+        </tr>
+
+        <tr>
+            <td class="text"> <?=$this->escape($this->label_user_pos);?></td>
+            <td>
+                <?$pos_list = $this->select_user_pos;?>
+                <select size="1" name="user_pos" class="inputs" id="user_pos">
+                <?foreach ($pos_list as $pos)
+                { ?>
+                    <option value="<?=$pos['par_id']?>" <?if ($pos['par_id'] == $this->val_user_pos) echo "selected"?>> <?=$pos['par_pavadinimas']?> </option>
+                <? } ?>
+                </select>
+            </td>
+            <td class="text"> <?=$this->escape($this->label_user_place);?> </td>
+            <td>
+                <?$place_list = $this->select_user_place;?>
+                <select size="1" name="user_place" class="inputs" id="user_place">
+                <?foreach ($place_list as $place)
+                { ?>
+                    <option value="<?=$place['sk_id']?>" <?if ($place['sk_id'] == $this->val_user_place) echo "selected"?>> <?=$place['sk_pavad']?>  </option>
+                <? } ?>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="text" ><?=$this->escape($this->label_add_foto);?></td>
+          
+            <td colspan ="3">
+                <input type="hidden" name="MAX_FILE_SIZE" value="200000000">
+                <input type="file" name="user_foto" accept="image/jpeg, image/png" size="65" id="show_browse" class="browse"/>
+            </td>
+        </tr>
+        
+        <tr>
+            <th colspan="4">
+                <input type="submit" name="user_save" value="<?=$this->escape($this->submit_user_save);?>"
+                       class="btn" onmouseover="this.className='btn btnhov'" onmouseout="this.className='btn'">
+                       
+            </th>
+        </tr>
+    </table>
+   </form>
+    <br />
+   <table cellspacing="1" cellpadding="3" class="open" onmouseover="mouseover('pass_event_head');" onmouseout="mouse_out('pass_event_head');" id="pass_event_head">
+        <tr onclick="show('pass_event');" >
+            <th>
+                <img alt="sub-menu" src="http:/<?=$this->escape($this->path);?>/images/sub_small.png">&nbsp;
+                <a href="#">
+                    <?=$this->escape($this->label_change_pass);?> </a>
+            </th>
+        </tr>
+   </table>
+   <div id="pass_event" class="pass_event" style="display:none;">
+   <table cellspacing="1" cellpadding="3">
+        
+        <tr>
+            <td width="150" class="text">
+                <?=$this->escape($this->label_old_pass);?>
+            </td>
+            <td>
+                <input type="password" name="old_pass" class="inputs" id="old_pass">
+            </td>
+        </tr>
+        <tr>
+            <td  class="text">
+                <?=$this->escape($this->label_new_pass);?>
+            </td>
+            <td>
+                <input type="password" name="new_pass" class="inputs" id="new_pass">
+            </td>
+        
+            <td  class="text">
+                <?=$this->escape($this->label_new_pass_confirm);?>
+            </td>
+            <td>
+                <input type="password" name="new_pass_confirm" class="inputs" id="new_pass_confirm">
+            </td>
+        </tr>
+        <tr><td colspan="4"><div id="pass_error"> </div></td></tr>
+        <tr>
+            <td colspan="4">
+                <input type="submit" name="change_pass" value="<?=$this->escape($this->submit_pass);?>"
+                       class="btn" onmouseover="this.className='btn btnhov'" onmouseout="this.className='btn'"
+                       onclick="change_pass();">
+            </td>
+        </tr>
+        
+            
+        
+   </table>
+   </div>
+
+
+        <div id="user_list"></div>
+        <div id="confirm"></div>
+        <div id="window"></div>
+
+</div>

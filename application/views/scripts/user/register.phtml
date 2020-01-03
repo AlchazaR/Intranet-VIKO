@@ -1,0 +1,102 @@
+<script type="text/javascript" src="../js/register_chk.js"></script>
+<h1><?=$this->escape($this->title);?></h1>
+
+    <table border="0" width="368" align="center" cellspacing="1" cellpadding="3">
+        <tr>
+            <td><?=$this->escape($this->label_fname)?></td>
+            <td><input type="text" name="first_name" class="inputs" maxlength="30"
+                       id="first_name" onkeypress="lenght_check('first_name', 2);"></td>
+        </tr>
+
+        <tr>
+            <th colspan="2" id="first_name_error"></th>
+        </tr>
+
+        <tr>
+            <td><?=$this->escape($this->label_lname)?></td>
+            <td><input type="text" name="last_name" class="inputs" maxlength="30"
+                       id="last_name" onkeypress="lenght_check('last_name', 2);"></td>
+	</tr>
+
+        <tr>
+            <th colspan="2" id="last_name_error"></th>
+        </tr>
+
+        <tr>
+            <td><?=$this->escape($this->label_place)?></td>
+            <td>
+
+                <?$places_list = $this->select_places;?>
+
+                <select size="1" name="user_place" class="inputs" id="user_place">
+                
+                <?foreach ($places_list as $place)
+                { ?>
+                    <option value="<?=$place['sk_id']?>"> <?=$place['sk_pavad']?> </option>
+             <? } ?>
+                </select>
+            </td>
+	</tr>
+
+        <tr>
+            <td><?=$this->escape($this->label_mail)?></td>
+            <td><input type="text" name="user_mail" class="inputs" maxlength="70"
+                       id="user_mail" onblur="email_check('user_mail');"></td>
+	</tr>
+
+        <tr>
+            <td><?=$this->escape($this->label_tel)?></td>
+            <td><input type="text" name="user_tel" class="inputs" id="user_tel" maxlength="20"></td>
+	</tr>
+
+        <tr>
+            <td><?=$this->escape($this->label_position)?></td>
+            <td>
+                <?$positions_list = $this->select_positions;?>
+
+                <select size="1" name="user_position" class="inputs" id="user_position">
+
+                <?foreach ($positions_list as $position)
+                { ?>
+                    <option value="<?=$position['par_id']?>"> <?=$position['par_pavadinimas']?> </option>
+             <? } ?>
+                </select>
+            </td>
+	</tr>
+
+        <tr>
+            <td><?=$this->escape($this->label_login)?></td>
+            <td><input type="text" name="user_login" class="inputs" maxlength="20"
+                       id="user_login" onblur="login_chk();"></td>
+	</tr>
+
+        <tr>
+            <th colspan="2" id="user_login_error"></th>
+        </tr>
+
+        <tr>
+            <td><?=$this->escape($this->label_pass)?></td>
+            <td><input type="password" name="user_pass" class="inputs"
+                       id="password" onkeypress="lenght_check('password', 5);"></td>
+	</tr>
+        <tr>
+            <th colspan="2" id="password_error"></th>
+        </tr>
+        <tr>
+            <td><?=$this->escape($this->label_pass_confirm)?></td>
+            <td><input type="password" name="user_pass_confirm" class="inputs"
+                       id="user_pass_confirm" onblur="pass_confirm('password', 'user_pass_confirm');"></td>
+	</tr>
+
+        <tr>
+            <th colspan="2" id="user_pass_confirm_error"></th>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <input type="submit" name="submit" value="<?=$this->escape($this->label_submit);?>"
+                       class="btn" onmouseover="this.className='btn btnhov'" onmouseout="this.className='btn'"
+                       onclick="register_user();">
+            </td>
+        </tr>
+    </table>

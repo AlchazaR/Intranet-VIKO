@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configdata>
+    <nav>
+        <pages>
+            <label>Pradžia</label>
+            <controller>user</controller>
+            <action>userpage</action>
+        </pages>
+                <mydrafts>
+                        <label>My Drafts</label>
+                        <controller>query</controller>
+                        <action>index</action>
+                        <params>
+                            <queryname>mydrafts</queryname>
+                        </params>
+                </mydrafts>
+
+                <users>
+                    <label>Vartotojai</label>
+                    <controller>user</controller>
+                    <action>list</action>
+                    <visible>true</visible>
+                </users>
+            
+    </nav>
+</configdata>
+<menu_list>
+    <Pagrindinis>
+        <id>0</id>
+        <label>Pargindinis</label>
+        <link>/home</link>
+        <logo>/images/menu_pagr.png</logo>
+        
+    </Pagrindinis>
+
+</menu_list>

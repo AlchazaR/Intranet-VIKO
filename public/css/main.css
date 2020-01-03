@@ -1,0 +1,172 @@
+/******************************************************************
+*                              main                               *
+* *************************************************************** *
+* *       left          *               content                 * *
+* * ******************* *                                       * *
+* * *     menu_logo   * *                                       * *
+* * ******************* *                                       * *
+* * *     menu        * *                                       * *
+*******************************************************************
+*                           footer                                *
+******************************************************************/
+
+#main
+{
+    text-align:center;
+    margin-top: 70px;
+    width: 768px;
+    height: auto;
+    background: url(../images/background-left.png) left repeat-y;
+    color: #333333;
+    font-family: Georgia,'Times New Roman',times,serif;
+    font-size: 12px;
+    overflow: hidden;
+    background-color: #fefffe;
+}
+
+#content
+{
+    text-align: center;
+    float: right;
+    width: 618px;
+    height: auto;
+
+}
+
+#left
+{
+    text-align: right;
+    display: block;
+    float: left;
+    height: auto;
+    /*width: 140px;*/
+    /*background: #ccc url(../images/background-left.png) repeat-y;*/
+}
+
+ 
+
+#footer
+{
+    text-align:center;
+    background: url(../images/background-bottom.png) bottom no-repeat;
+    height: 75px;
+    width: 788px;
+    clear: both;
+}
+
+.menu
+{
+    text-align:center;
+    display: block;
+    float:left;
+    width: 140px;
+    padding: 0;
+    margin: 0px;
+    /*background-color: #ccc;*/
+   /* background: #ccc url(../images/background-left.png) repeat-y;*/
+}
+
+
+/*************************
+*   Menu parametrai      *
+*************************/
+.menu li
+{
+   background: url(../images/bkg_li.png) bottom no-repeat;
+   text-align:center;
+   height: 30px;
+   list-style-type: none;
+   margin-bottom: 3px;
+   display: block;
+}
+.menu a, .contents_main a
+{
+    color: #333333;
+    font-weight: bold;
+    font-family: Georgia,'Times New Roman',times,serif;
+    padding-top : 2px;
+    padding-bottom: 5px;
+    text-decoration: none;
+}
+
+.menu a:hover
+{
+   color: #010101;
+}
+
+
+/********************************
+*   Menu logotipo parametrai    *
+*   vieta virs menu             *
+********************************/
+.menu_logo
+{
+    text-align:center;
+    display: block;
+    height: 30px;
+    width: 130px;
+}
+
+
+/*******************************
+*   contents-header parametrai *
+*******************************/
+.contents-header
+{
+    background: url(../images/content-header-line.png) bottom no-repeat;
+    height: 35px;
+}
+
+.sub_menu
+{
+    display: none;
+    height: 30px;
+    width: 590px;
+}
+
+.sub_menu a
+{
+    color: #333333;
+    font-weight: bold;
+    font-family: Georgia,'Times New Roman',times,serif;
+    margin-top : 7px;
+    padding-bottom: 8px;
+    display:inline-block;
+    min-width: 150px;
+    text-decoration: none;
+    background: url(../images/bkg_li.png) bottom no-repeat;
+}
+
+.contents_main
+{
+    margin-top: 10px;
+}
+
+.contents_main table
+{
+    width: 600px;
+    font-weight: normal;
+    
+}
+
+a:hover
+{
+   color: #010101;
+}
+
+tr
+{
+    font-family: Georgia,'Times New Roman',times,serif;
+    color: #333333;
+}
+
+ul
+{
+    padding: 0;
+    margin: 0;
+}
+
+/*#search_event
+{
+    display: none;
+}*/

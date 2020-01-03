@@ -1,0 +1,20 @@
+<!--foto galerija >> index-->
+
+<script type="text/javascript" src="http:/<?=$this->escape($this->path);?>/js/mygroups.js"></script>
+
+<div class="contents-header">
+    <h1><img alt="sub-menu" src="http:/<?=$this->escape($this->path);?>/images/sub-menu-btn.png" id="sub_menu_btn"
+             onmouseover="document.sub_menu_btn.src='http:/<?=$this->escape($this->path);?>/images/sub-menu-btn-hover.png'"
+             onmouseout="document.sub_menu_btn.src='http:/<?=$this->escape($this->path);?>/images/sub-menu-btn.png'"
+             onmousedown="show('sub_menu_mygroups'); document.sub_menu_btn.src='http:/<?=$this->escape($this->path);?>/images/sub-menu-btn-pressed.png'" >
+        <?=$this->escape($this->logo);?></h1>
+</div>
+
+<div class="sub_menu" id="sub_menu_mygroups" style="display:none;">
+    <a href="http:/<?=$this->escape($this->path);?>/foto"><?=$this->escape($this->label_all_albums);?></a>
+    <a href="http:/<?=$this->escape($this->path);?>/foto/myalbums"><?=$this->escape($this->label_my_albums);?></a>
+    <a href="http:/<?=$this->escape($this->path);?>/foto/newalbum"><?=$this->escape($this->label_new_album);?></a>
+</div>
+
+<div class="contents_main">
+</div>

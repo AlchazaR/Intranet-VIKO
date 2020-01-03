@@ -1,0 +1,82 @@
+#main
+{
+    text-align:center;
+
+    margin-top: 40px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    width:768px;
+    min-height: 280px;
+    color: #333333;
+    font-family: Georgia,'Times New Roman',times,serif;
+    font-size: 12px;
+    background: #fefffe url(../images/background-main.png) repeat-x;
+}
+
+tr
+{
+    font-weight: bold;
+}
+
+.error
+{
+    font-family: Georgia,'Times New Roman',times,serif;
+    font-size: 12px;
+    color: #bf0429;
+}
+
+
+input.btn
+{
+    color: #333333;
+    font-weight: bold;
+    font-family: Georgia,'Times New Roman',times,serif;
+    background-color:#fed;
+    border: 1px solid;
+    border-color: #696 #363 #363 #696;
+    width: 200px;
+}
+
+input.btnhov
+{
+    border-top-color: #406c3e;
+    border-bottom-color: #063206;
+    border-left-color: #406c3e;
+    border-right-color: #406c3e;
+    background-color:#ced19d;
+}
+
+a
+{
+    color: #333333;
+    font-weight: bold;
+    font-family: Georgia,'Times New Roman',times,serif;
+    background-color:#d3d4d3;
+    border: 1px solid;
+    border-color: #696 #363 #363 #696;
+    padding-top : 2px;
+    padding-bottom: 2px;
+    padding-left: 7px;
+    padding-right: 7px;
+    width: 200px;
+    text-decoration: none;
+    
+}
+
+a:hover
+{
+    border-top-color: #406c3e;
+    border-bottom-color: #063206;
+    border-left-color: #406c3e;
+    border-right-color: #406c3e;
+    background-color:#c2c3c2;
+}
+
+#footer
+{
+    text-align:center;
+    background: url(../images/background-bottom_login.png) bottom no-repeat;
+    height: 75px;
+    width: 788px;
+    clear: both;
+}
